@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+import '../all.css';
 
 function MainPage() {
     const [section, setSection] = useState([]);
@@ -22,27 +23,44 @@ function MainPage() {
             setSection(res.data.results)
         }).catch((err) => {
             setSection([])
-        })}}
+        })}else{
+            setSection([])
+        }
+    }
         cancel = true;
+
+        console.log(section)
 
         request();
     }, [input, setInput, drop, setDrop])
     return (
-        <div className="text-center">
-            <h1>{input}</h1>
-            <div>
-                <input className="border-2 border-black rounded" type="text" onChange={changeInput} value={input} />
-                <select onChange={changeDrop} default={drop}>
-                    <option>Manga</option>
-                    <option selected="selected">Anime</option>
-                </select>
-            </div>
-            {section.map(result => (
-                <Link to={`/${drop}/${result.mal_id}`}>
-                    <div className="flex justify-center text-left"><img className="w-10" src={result.image_url} alt={result.title} />{result.title}</div>
+<div class="py-2 h-100 min-h-screen bg-gray-300 px-2">
+    <div class="max-w-md min-w-md mx-auto bg-gray-100 shadow-lg rounded-lg overflow-hidden md:max-w-lg"></div>            
+        <div class="flex justify-center items-center">
+            <div class="max-w-md p-4">
+                <h1 class="text-center font-bold text-4xl py-2 ">Kobi Weeb Lookup</h1>
+                <div class="flex">
+                    <input onChange={changeInput} value={input} type="text" class="w-full h-12 rounded-l focus:outline-none px-3 focus:shadow-md" placeholder="Search..." /> 
+                    <select onChange={changeDrop} default={drop} class="rounded-r px-2 border-l-2 border-gray-100 outline-none">
+                        <option>Manga</option>
+                        <option selected="selected">Anime</option>
+                    </select>
+                </div>
+
+                <ul>
+            {section.map(data => (
+                <Link to={`/${drop}/${data.mal_id}`}>
+                    <li class="flex justify-between items-center bg-white mt-2 p-2 hover:shadow-lg rounded cursor-pointer transition">
+                        <div class="flex ml-2"> <div class="rounded-full relative overflow-hidden w-12 h-12 border border-black"><img src={data.image_url} class="rounded-full" alt={data.title} /></div>
+                            <div class="flex flex-col ml-2"> <span class="font-medium truncate w-60 text-black">{data.title}</span> <span class="text-sm text-gray-400 truncate w-80">{data.synopsis}</span> </div>
+                        </div>
+                    </li>
                 </Link>
             ))}
+                </ul>
+            </div>
         </div>
+    </div>
     )
 }
 
