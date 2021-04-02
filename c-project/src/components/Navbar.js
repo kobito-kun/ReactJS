@@ -1,22 +1,20 @@
 import React from 'react'
+import './Navbar.css'
 
 function Navbar() {
     return (
-        <div>
-			<header id="header">
-				<a class="logo" href="index.html">Industrious</a>
-				<nav>
-					<a href="#menu">Menu</a>
-				</nav>
-			</header>
-
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="elements.html">Elements</a></li>
-					<li><a href="generic.html">Generic</a></li>
-				</ul>
-			</nav>
+        <div className="navbar">
+            <div>
+                <a>
+                    Logo
+                </a>
+                <a>
+                    About Me
+                </a>
+                <a>
+                    Service
+                </a>
+            </div>
         </div>
     )
 }
