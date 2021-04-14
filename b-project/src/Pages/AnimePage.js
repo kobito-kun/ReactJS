@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import '../all.css'
 
 function AnimePage({match}) {
 
@@ -24,7 +23,7 @@ function AnimePage({match}) {
 
     if(match.params.type === 'anime' && loaded === true){
         return (
-            <div class="bg-gray-300 min-h-screen grid grid-cols-2 p-8">
+            <div class="bg-gray-300 min-h-screen grid lg:grid-cols-2 p-8">
                 <div>
                     <img src={data.image_url} alt={data.title} style={{width: "40%"}} class="block mx-auto py-2" />
                     <iframe src={data.trailer_url} class="block mx-auto py-2" />
